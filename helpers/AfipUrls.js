@@ -1,4 +1,4 @@
-const afip_urls = {
+const AFIP_URLS = {
 	HOMO: {
 		wsaa: 'https://wsaahomo.afip.gov.ar/ws/services/LoginCms?wsdl',
 		service: 'https://wswhomo.afip.gov.ar/{service}/service.asmx?wsdl' //wsfev1
@@ -10,21 +10,21 @@ const afip_urls = {
 };
 
 class AfipUrls {
-	constructor() {
-		this.urls = afip_urls.HOMO;
 
-		if (!process.env.HOMO) {
-			this.urls = afip_urls.PROD;
-		}
+	static get urls() {
+		return process.env.HOMO ? AFIP_URLS.HOMO : AFIP_URLS.PROD
 	}
 
-	getWSAA() {
+	static get wsaa() {
 		return this.urls.wsaa;
 	}
 
-	getService(service) {
+	static getService(service) {
 		return this.urls.service.replace('{service}', service);
 	}
 }
 
-module.exports = new AfipUrls();
+module.exports = {
+	AfipUrls,
+	AFIP_URLS
+};

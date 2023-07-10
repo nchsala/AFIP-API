@@ -5,7 +5,7 @@ const fs = require('fs'),
 	parseString = xml2js.parseString,
 	ntpClient = require('ntp-client'),
 	SignHelper = require('./SignHelper'),
-	AfipURLs = require('./urls'),
+	{ AfipURLs } = require('./AfipUrls'),
 	Cache = require('../cache');
 
 class Tokens {
@@ -128,7 +128,7 @@ class Tokens {
 		});
 	}
 
-	generateToken(service, refresh = false) {
+	get(service, refresh = false) {
 		// Parse some of the Services
 		if (service == 'wsfev1') {
 			service = 'wsfe';
@@ -177,4 +177,6 @@ class Tokens {
 	}
 }
 
-module.exports = new Tokens();
+module.exports = {
+	Tokens
+};

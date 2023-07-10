@@ -18,9 +18,11 @@
 	"scripts": {
 		"start": "node server.js",
 		"debug": "nodemon --inspect=5858 server.js",
-		"dev": "HOMO=true node server.js"
+		"dev": "HOMO=true node server.js",
+		"test": "jest"
 	},
 	"devDependencies": {
+		"jest": "^29.6.1",
 		"nodemon": "1.19.1"
 	}
 }
