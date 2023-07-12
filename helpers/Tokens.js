@@ -5,7 +5,7 @@ const fs = require('fs'),
 	parseString = xml2js.parseString,
 	ntpClient = require('ntp-client'),
 	SignHelper = require('./SignHelper'),
-	{ AfipURLs } = require('./AfipUrls'),
+	{ AfipUrls } = require('./AfipUrls'),
 	Cache = require('../cache');
 
 class Tokens {
@@ -23,7 +23,7 @@ class Tokens {
 			if (this.client) {
 				resolve(this.client);
 			} else {
-				soap.createClient(AfipURLs.getWSAA(), (err, client) => {
+				soap.createClient(AfipUrls.wsaa, (err, client) => {
 					if (err && !client) {
 						reject();
 					} else {
